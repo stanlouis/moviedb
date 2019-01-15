@@ -17,8 +17,8 @@ const App = () => (
             <img src={logo} className="App-logo " alt="logo" />
           </Link>
         </header>
-        <div className="container">
-          <h1 className="text-center my-3 display-4">The Movie Database</h1>
+        <div className="container-fluid">
+          <h1 className="text-center text-muted my-3 display-4">Available Now</h1>
 
           <Switch>
             <Route exact path="/" component={MoviesList} />

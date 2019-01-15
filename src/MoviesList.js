@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import movieDb from './api/moviedb';
 import Movie from './Movie';
 
@@ -26,15 +27,23 @@ export class MoviesList extends Component {
   render() {
     const { movies } = this.state;
     return (
-      <React.Fragment>
-        <ul className="list-group">
-          {movies.map(movie => (
-            <Movie key={movie.id} movie={movie} />
-          ))}
-        </ul>
-      </React.Fragment>
+      <MovieGrid>
+        {movies.map(movie => (
+          <Movie key={movie.id} movie={movie} />
+        ))}
+      </MovieGrid>
     );
   }
 }
+
+const MovieGrid = styled.div`
+  display: grid;
+  padding: 1rem;
+  grid-template-columns: repeat(6, 1fr);
+  grid-row-gap: 1rem;
+  justify-items: center;
+  align-items: center;
+
+`;
 
 export default MoviesList;
