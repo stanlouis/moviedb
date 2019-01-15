@@ -11,7 +11,6 @@ export class MoviesList extends Component {
     try {
       const movies = await movieDb.get('/discover/movie', {
         params: {
-          language: 'en-US',
           sort_by: 'popularity.desc',
           include_adult: false,
           include_video: false,
