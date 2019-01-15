@@ -1,50 +1,28 @@
-import React, { Component } from 'react';
-import movieDb from './api/moviedb';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 import logo from './moviedb.png';
-import Movie from './Movie';
 
-class App extends Component {
-  state = {
-    movies: [],
-  };
+import MoviesList from './MoviesList';
 
-  componentDidMount = async () => {
-    try {
-      const movies = await movieDb.get('/discover/movie', {
-        params: {
-          language: 'en-US',
-          sort_by: 'popularity.desc',
-          include_adult: false,
-          include_video: false,
-          page: 1,
-        },
-      });
-      this.setState({ movies: movies.data.results });
-    } catch (e) {
-      console.log(e); // eslint-disable-line
-    }
-  };
-
-  render() {
-    const { movies } = this.state;
-    return (
+const App = () => (
+  <div>
+    <Router>
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo " alt="logo" />
         </header>
         <div className="container">
           <h1 className="text-center my-3 display-4">The Movie Database</h1>
-          <ul className="list-group">
-            {movies.map(movie => (
-              <Movie key={movie.id} movie={movie} />
-            ))}
-          </ul>
+
+          <Switch>
+            <Route exact path="/" component={MoviesList} />
+          </Switch>
         </div>
       </div>
-    );
-  }
-}
+    </Router>
+  </div>
+);
 
 export default App;
