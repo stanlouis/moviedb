@@ -7,12 +7,15 @@ import Movie from './Movie';
 
 export class MoviesList extends PureComponent {
   componentDidMount = () => {
-    const { getMovies } = this.props;
-    getMovies();
+    const { getMovies, isLoaded } = this.props;
+    if (!isLoaded) {
+      getMovies();
+    }
   };
 
   render() {
-    const { movies } = this.props;
+    const { movies, isLoaded } = this.props;
+    if (!isLoaded) return <h1>Loading...</h1>
     return (
       <MovieGrid>
         {movies.map(movie => (
@@ -32,7 +35,10 @@ const MovieGrid = styled.div`
   align-items: center;
 `;
 
-const mapStateToProps = state => ({ movies: state.movies.movies });
+const mapStateToProps = state => ({
+  movies: state.movies.movies,
+  isLoaded: state.movies.moviesLoaded,
+});
 
 export default connect(
   mapStateToProps,

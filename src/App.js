@@ -7,7 +7,6 @@ import logo from './moviedb.png';
 
 import MoviesList from './components/movies/MoviesList';
 import MovieDetail from './components/movies/MovieDetail';
-import Toggle from './components/Toggle';
 
 const App = () => (
   <Fragment>
@@ -18,7 +17,6 @@ const App = () => (
             <img src={logo} className="App-logo " alt="logo" />
           </Link>
         </header>
-        <Toggle />
         <div className="container-fluid">
           <h1 className="text-center text-muted my-3 display-4">
             Now Available

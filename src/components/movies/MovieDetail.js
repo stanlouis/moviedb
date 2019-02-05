@@ -2,41 +2,41 @@
 import React, { Component } from 'react';
 import Overdrive from 'react-overdrive';
 import styled from 'styled-components';
-import movieDb from '../../api/moviedb';
+import { connect } from 'react-redux';
+import { getMovie, resetMovie } from '../../actions';
 import { Poster } from './Movie';
 
-const POSTER_PATH = 'http://image.tmdb.org/t/p/w154';
-const BACKDROP_PATH = 'http://image.tmdb.org/t/p/w1280';
+const POSTER_PATH = 'https://image.tmdb.org/t/p/w154';
+const BACKDROP_PATH = 'https://image.tmdb.org/t/p/w1280';
 
 class MovieDetail extends Component {
-  state = {
-    movieInfo: {},
-  };
+  componentDidMount() {
+    const { getMovie, match } = this.props;
 
-  componentDidMount = async () => {
-    const { id } = this.props.match.params;
-    try {
-      const res = await movieDb.get(`/movie/${id}`);
-      const movieInfo = res.data;
-      this.setState({ movieInfo });
-    } catch (e) {
-      console.log(e); // eslint-disable-line
-    }
-  };
+    getMovie(match.params.id);
+  }
+
+  componentWillUnmount() {
+    this.props.resetMovie();
+  }
 
   render() {
-    const { movieInfo } = this.state;
+    const { movie } = this.props;
+    if (!movie.id) return null;
     return (
-      <MovieWrapper backdrop={`${BACKDROP_PATH}${movieInfo.backdrop_path}`}>
+      <MovieWrapper backdrop={`${BACKDROP_PATH}${movie.backdrop_path}`}>
         <MovieInfo>
-          <Overdrive id={movieInfo.id}>
-            <Poster src={`${POSTER_PATH}${movieInfo.poster_path}`} alt={movieInfo.title} />
+          <Overdrive id={movie.id}>
+            <Poster
+              src={`${POSTER_PATH}${movie.poster_path}`}
+              alt={movie.title}
+            />
           </Overdrive>
           <div className="card border-light">
             <div className="card-body">
-              <h1 className="card-title">{movieInfo.title}</h1>
-              <h3 className="card-subtitle text-muted">{movieInfo.release_date}</h3>
-              <p className="card-text">{movieInfo.overview}</p>
+              <h1 className="card-title">{movie.title}</h1>
+              <h3 className="card-subtitle text-muted">{movie.release_date}</h3>
+              <p className="card-text">{movie.overview}</p>
             </div>
           </div>
         </MovieInfo>
@@ -45,13 +45,27 @@ class MovieDetail extends Component {
   }
 }
 
-export default MovieDetail;
+const mapStateToProps = state => ({
+  movie: state.movies.movie,
+  isLoaded: state.movies.movieLoaded,
+});
+
+export default connect(
+  mapStateToProps,
+  { getMovie, resetMovie }
+)(MovieDetail);
 
 const MovieWrapper = styled.div`
   position: relative;
   padding-top: 50vh;
   background: url(${props => props.backdrop}) no-repeat;
   background-size: cover;
+  
+  @media (max-width: 768px) {
+    background: url(${props => props.backdrop}) no-repeat;
+    background-size: 100% auto;
+    background-color: white;
+  }
 `;
 
 const MovieInfo = styled.div`

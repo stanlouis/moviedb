@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux';
 
-import toggle from './toggleReducer';
 import movies from './moviesReducer';
 
-const rootReducer = combineReducers({ toggle, movies });
+const rootReducer = combineReducers({ movies });
 
 export default rootReducer;
