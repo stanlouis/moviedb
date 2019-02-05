@@ -1,17 +1,17 @@
 .App-logo {
   height: 50px;
   width: auto;
-  padding: 0 0 15px 0;
+  padding: 4px 4px 1px 32px;
+  background: #222;
 }
 
 .App-header {
   background-color: rgba(1, 1, 1, 0.3);
   height: 70px;
-  padding: 20px;
+  padding: 20px 20px 20px 0;
   color: white;
 }
 
 .App-link {
   color: #61dafb;
 }
-

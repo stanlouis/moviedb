@@ -39,7 +39,7 @@ export class MoviesList extends Component {
 const MovieGrid = styled.div`
   display: grid;
   padding: 1rem;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(11.25rem,1fr));
   grid-row-gap: 1rem;
   justify-items: center;
   align-items: center;

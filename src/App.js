@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable import/no-named-as-default */
+import React, { Fragment } from 'react';
 import {
   BrowserRouter as Router, Route, Switch, Link,
 } from 'react-router-dom';
@@ -9,7 +10,7 @@ import MoviesList from './MoviesList';
 import MovieDetail from './MovieDetail';
 
 const App = () => (
-  <div>
+  <Fragment>
     <Router>
       <div className="App">
         <header className="App-header">
@@ -27,7 +28,7 @@ const App = () => (
         </div>
       </div>
     </Router>
-  </div>
+  </Fragment>
 );
 
 export default App;

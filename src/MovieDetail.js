@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import movieDb from './api/moviedb';
@@ -12,7 +13,6 @@ class MovieDetail extends Component {
   };
 
   componentDidMount = async () => {
-    // eslint-disable-next-line react/destructuring-assignment
     const { id } = this.props.match.params;
     try {
       const res = await movieDb.get(`/movie/${id}`);
