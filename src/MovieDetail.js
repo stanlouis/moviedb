@@ -66,4 +66,13 @@ const MovieInfo = styled.div`
     position: relative;
     top: -5rem;
   }
+
+  @media (max-width: 480px) {
+    img {
+      display: none;
+    }
+    > div {
+      margin: 0 auto;
+    }
+  }
 `;
