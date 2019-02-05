@@ -5,7 +5,7 @@ module.exports = {
     es6: true
   },
   settings: {
-    ecmascript: 6,
+    ecmascript: 7,
     jsx: true
   },
   parserOptions: {

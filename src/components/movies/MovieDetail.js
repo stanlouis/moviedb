@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import Overdrive from 'react-overdrive';
 import styled from 'styled-components';
-import movieDb from './api/moviedb';
+import movieDb from '../../api/moviedb';
 import { Poster } from './Movie';
 
 const POSTER_PATH = 'http://image.tmdb.org/t/p/w154';
