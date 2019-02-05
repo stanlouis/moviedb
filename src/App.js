@@ -19,7 +19,7 @@ const App = () => (
           </Link>
         </header>
         <div className="container-fluid">
-          <h1 className="text-center text-muted my-3 display-4">Available Now</h1>
+          <h1 className="text-center text-muted my-3 display-4">Now Available </h1>
 
           <Switch>
             <Route exact path="/" component={MoviesList} />

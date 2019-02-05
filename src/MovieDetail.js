@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import Overdrive from 'react-overdrive';
 import styled from 'styled-components';
 import movieDb from './api/moviedb';
 import { Poster } from './Movie';
@@ -28,7 +29,9 @@ class MovieDetail extends Component {
     return (
       <MovieWrapper backdrop={`${BACKDROP_PATH}${movieInfo.backdrop_path}`}>
         <MovieInfo>
-          <Poster src={`${POSTER_PATH}${movieInfo.poster_path}`} alt={movieInfo.title} />
+          <Overdrive id={movieInfo.id}>
+            <Poster src={`${POSTER_PATH}${movieInfo.poster_path}`} alt={movieInfo.title} />
+          </Overdrive>
           <div className="card border-light">
             <div className="card-body">
               <h1 className="card-title">{movieInfo.title}</h1>
