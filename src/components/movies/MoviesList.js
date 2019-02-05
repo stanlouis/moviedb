@@ -7,8 +7,9 @@ import Movie from './Movie';
 
 export class MoviesList extends PureComponent {
   componentDidMount = () => {
-    const { getMovies, isLoaded } = this.props;
-    if (!isLoaded) {
+    const { getMovies, isLoaded, moviesLoadedAt } = this.props;
+    const oneHour = 60 * 60 * 1000;
+    if (!isLoaded || ((new Date()) - new Date(moviesLoadedAt)) > oneHour) {
       getMovies();
     }
   };
@@ -38,9 +39,10 @@ const MovieGrid = styled.div`
 const mapStateToProps = state => ({
   movies: state.movies.movies,
   isLoaded: state.movies.moviesLoaded,
+  moviesLoadedAt: state.movies.moviesLoadedAt,
 });
 
 export default connect(
   mapStateToProps,
-  { getMovies }
+  { getMovies },
 )(MoviesList);

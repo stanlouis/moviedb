@@ -5,6 +5,7 @@ const initialState = {
   moviesLoaded: false,
   movie: {},
   movieLoaded: false,
+  moviesLoadedAt: new Date(),
 };
 
 export default (state = initialState, action) => {
